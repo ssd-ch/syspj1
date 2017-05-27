@@ -1,3 +1,5 @@
+package syspj;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,7 +65,6 @@ public class JDBCPostgreSQL {
             return null;
         }
     }
-
 
     public void close() {
         // データベースから切断
