@@ -1,5 +1,5 @@
 .idea/
 out/
-syspj1.imi
+*.imi
 .DS_Store
 *~

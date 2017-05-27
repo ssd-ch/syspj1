@@ -44,7 +44,7 @@ divタグは領域を指定するためのタグでcssとかで使うので最�
 
             <br>
 
-            <h3>ラジオボックス</h3>
+            <h3>ラジオボタン</h3>
             <input type="radio" name="place" value="島根" checked="checked">島根
             <input type="radio" name="place" value="東京">東京
             <input type="radio" name="place" value="大阪">大阪
