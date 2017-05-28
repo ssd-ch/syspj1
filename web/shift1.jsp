@@ -4,7 +4,7 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    //これはPOSTで受けっとったデータの文字コード設定
+    //POSTで受けっとったデータの文字コード設定
     request.setCharacterEncoding("UTF-8");
 
     int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -17,6 +17,14 @@
     String monthStr = request.getParameter("month");
     if (monthStr != null) {
         month = Integer.valueOf(monthStr);
+    }
+
+    if (request.getParameter("last") != null) {
+        year = month <= 1 ? year - 1 : year;
+        month = month <= 1 ? 12 : month - 1;
+    } else if (request.getParameter("next") != null) {
+        year = month >= 12 ? year + 1 : year;
+        month = month >= 12 ? 1 : month + 1;
     }
 
     JDBCPostgreSQL dbAdapter = new JDBCPostgreSQL();
@@ -74,16 +82,18 @@
 
         <h2><%=year%>年<%=month%>月の予定</h2>
         <form method="post" action="shift1.jsp">
-            <input type="hidden" name="year" value="<%=month<=1?year-1:year%>">
-            <input type="hidden" name="month" value="<%=month<=1?12:month-1%>">
-            <input type="submit" name="button" value="<%=month<=1?12:month-1%>月へ">
+            <input type="hidden" name="year" value="<%=year%>">
+            <input type="hidden" name="month" value="<%=month%>">
+            <input type="submit" name="last" value="<%=month<=1?12:month-1%>月へ">
+            &nbsp;<%=month%>月&nbsp;
+            <input type="submit" name="next" value="<%=month>=12?1:month+1%>月へ">
         </form>
-        <form method="post" action="shift1.jsp">
-            <input type="hidden" name="year" value="<%=month>=12?year+1:year%>">
-            <input type="hidden" name="month" value="<%=month>=12?1:month+1%>">
-            <input type="submit" name="button" value="<%=month>=12?1:month+1%>月へ">
+        <form name="mainForm" method="post" action="shift2.jsp">
+            <input type="hidden" name="year" value="<%=year%>">
+            <input type="hidden" name="month" value="<%=month%>">
+            <input type="hidden" name="day" value="" />
+            <%=new MonthlyCalendar(year, month)%>
         </form>
-        <%=new MonthlyCalendar(year, month)%>
 
     </div>
     <div id="footer">

@@ -11,7 +11,7 @@ public class MonthlyCalendar {
 
     private int starthay;
 
-    private int lasthate;
+    private int lastday;
 
     /**
      * カレンダー表オブジェクトを作成します。
@@ -34,11 +34,11 @@ public class MonthlyCalendar {
         // 月末の日付を求めます。
         calendar.add(Calendar.MONTH, 1);
         calendar.add(Calendar.DATE, -1);
-        lasthate = calendar.get(Calendar.DATE);
+        lastday = calendar.get(Calendar.DATE);
         // カレンダー表を作成します。
         int row = 0;
         int column = starthay - 1; // starthay: 日曜日 = 1, 月曜日 = 2, ...
-        for (int date = 1; date <= lasthate; date++) {
+        for (int date = 1; date <= lastday; date++) {
             calendarMatrix[row][column] = date;
             if (column == 6) {
                 row++;
@@ -63,9 +63,10 @@ public class MonthlyCalendar {
                 if (day == 0) {
                     sb.append("<td></td>");
                 } else {
-                    sb.append("<td>" + String.valueOf(day) + "</td>");
+                    sb.append("<td>" + "<a href=\"javascript:setAndSubmit('" + String.valueOf(day) + "')\">" +
+                            String.valueOf(day) +"</a>" + "</td>");
                 }
-                if (day == lasthate) {
+                if (day == lastday) {
                     breakFlg = true;
                 }
             }
@@ -77,10 +78,4 @@ public class MonthlyCalendar {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        System.out.println(currentYear + "年" + currentMonth + "月");
-        System.out.println(new MonthlyCalendar(currentYear, currentMonth));
-    }
 }

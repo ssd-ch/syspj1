@@ -3,7 +3,7 @@
 <%@ page import="syspj.JDBCPostgreSQL" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    //これはPOSTで受けっとったデータの文字コード設定
+    //POSTで受けっとったデータの文字コード設定
     request.setCharacterEncoding("UTF-8");
 
     //データベースのアクセスをしやすくするために自作のクラスを利用する
