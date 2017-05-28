@@ -11,7 +11,7 @@
     <div id="main">
         <h1>ログインページ</h1>
 
-        <form method="post" action="sample1.jsp">
+        <form method="post" action="shift1.jsp">
             <input type="hidden" name="next" value="shift1">
             <input type="submit" value="ログイン">
         </form>
