@@ -91,8 +91,46 @@
         <form name="mainForm" method="post" action="shift2.jsp">
             <input type="hidden" name="year" value="<%=year%>">
             <input type="hidden" name="month" value="<%=month%>">
-            <input type="hidden" name="day" value="" />
-            <%=new MonthlyCalendar(year, month)%>
+            <input type="hidden" name="day" value=""/>
+
+            <table border="1">
+                <tr>
+                    <th>日</th>
+                    <th>月</th>
+                    <th>火</th>
+                    <th>水</th>
+                    <th>木</th>
+                    <th>金</th>
+                    <th>土</th>
+                </tr>
+                <%
+                    int[][] calendarMatrix = MonthlyCalendar.getInt(year, month);
+
+                    for (int i = 0; i < calendarMatrix.length; i++) {
+                        if (i > 0 && calendarMatrix[i][0] == 0) {
+                            break;
+                        }
+                %>
+                <tr><%
+                    for (int j = 0; j < calendarMatrix[i].length; j++) {
+                        int day = calendarMatrix[i][j];
+                        if (day == 0) {
+                %>
+                    <td></td>
+                    <%
+                    } else {
+                    %>
+                    <td><a href="javascript:setAndSubmit('<%=String.valueOf(day)%>')">
+                        <%=String.valueOf(day)%>
+                    </a></td>
+                    <%
+                            }
+                        }
+                    %></tr>
+                <%
+                    }
+                %>
+            </table>
         </form>
 
     </div>
