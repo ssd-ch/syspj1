@@ -14,9 +14,9 @@ public class JDBCPostgreSQL {
             Class.forName("org.postgresql.Driver");
 
             // データベースのURL (XXXをデータベース名に変える)
-            String url = "jdbc:postgresql://127.0.0.1:5432/syspj_test";
+            String url = "jdbc:postgresql://127.0.0.1:5432/syspj3_main";
             // ユーザ (XXXをグループ名に変える)
-            String usr = "syspj";
+            String usr = "syspj3";
             // パスワード (空でよい)
             String pwd = "";
 
@@ -63,6 +63,29 @@ public class JDBCPostgreSQL {
 
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    public Boolean set(String sql){
+
+        try {
+            // Statementオブジェクトを生成
+            Statement stmt = con.createStatement();
+
+            // ResultSetオブジェクトの生成
+            // SELECT文の処理
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // ResultSetオブジェクトのclose
+            rs.close();
+
+            // Statementオブジェクトのclose
+            stmt.close();
+
+            return true;
+
+        } catch (Exception e) {
+            return false;
         }
     }
 
