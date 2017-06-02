@@ -66,26 +66,21 @@ public class JDBCPostgreSQL {
         }
     }
 
-    public Boolean set(String sql){
+    public int set(String sql){
 
         try {
             // Statementオブジェクトを生成
             Statement stmt = con.createStatement();
 
-            // ResultSetオブジェクトの生成
-            // SELECT文の処理
-            ResultSet rs = stmt.executeQuery(sql);
-
-            // ResultSetオブジェクトのclose
-            rs.close();
+            int resultCount = stmt.executeUpdate(sql);
 
             // Statementオブジェクトのclose
             stmt.close();
 
-            return true;
+            return resultCount;
 
         } catch (Exception e) {
-            return false;
+            return -1;
         }
     }
 

@@ -27,11 +27,13 @@
         month = month >= 12 ? 1 : month + 1;
     }
 
+    String userID = "S001";
+
     JDBCPostgreSQL dbAdapter = new JDBCPostgreSQL();
     dbAdapter.open(); //データベースに接続
 
-    String sql = "select * from users;"; //SQL
-    String[] column = {"id", "name", "mail"}; //取得したい列名を配列にする
+    String sql = "select * from shift where name = '" + userID + "';"; //SQL
+    String[] column = {"date", "begin", "finish"}; //取得したい列名を配列にする
 
     ArrayList<HashMap<String, String>> resultData = dbAdapter.get(sql, column);
 
@@ -58,19 +60,19 @@
         %>
         <table border="1">
             <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>mail</th>
+                <th>date</th>
+                <th>begin</th>
+                <th>finish</th>
             </tr>
             <%
                 for (HashMap<String, String> rowData : resultData) {
             %>
             <tr>
-                <td><%=rowData.get("id")%>
+                <td><%=rowData.get("date")%>
                 </td>
-                <td><%=rowData.get("name")%>
+                <td><%=rowData.get("begin")%>
                 </td>
-                <td><%=rowData.get("mail")%>
+                <td><%=rowData.get("finish")%>
                 </td>
             </tr>
             <%}%>
@@ -93,7 +95,7 @@
             <input type="hidden" name="month" value="<%=month%>">
             <input type="hidden" name="day" value=""/>
 
-            <table border="1">
+            <table class="type11">
                 <tr>
                     <th>日</th>
                     <th>月</th>
@@ -120,9 +122,14 @@
                     <%
                     } else {
                     %>
-                    <td><a href="javascript:setAndSubmit('<%=String.valueOf(day)%>')">
-                        <%=String.valueOf(day)%>
-                    </a></td>
+                    <td>
+                        <div style="height: 20%; text-align: right"><a
+                                href="javascript:setAndSubmit('<%=String.valueOf(day)%>')">
+                            <%=String.valueOf(day)%>
+                        </a>
+                        </div>
+                        <div style="height: 80%"></div>
+                    </td>
                     <%
                             }
                         }

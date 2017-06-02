@@ -15,14 +15,12 @@
 ### ディレクトリ構成
 * /src  
 \*.java
+* /classes  
+\*.class
 * /web  
 \*.jsp \*.html \*.css \*.js  
-* /web/WEB-INF  
-web.xml
-* /web/WEB-INF/lib  
-\*.jar
 
 ### 開発環境・仕様ライブラリ
 * 開発言語 Java
 * DBMS PostgreSQL
-* Javaサーブレット [Apache Tomcat](http://tomcat.apache.org/)  
+* サーブレット [Apache Tomcat](http://tomcat.apache.org/)  
