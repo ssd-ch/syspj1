@@ -32,8 +32,11 @@
     JDBCPostgreSQL dbAdapter = new JDBCPostgreSQL();
     dbAdapter.open(); //データベースに接続
 
-    String sql = "select * from shift where name = '" + userID + "';"; //SQL
-    String[] column = {"date", "begin", "finish"}; //取得したい列名を配列にする
+    String sql = "select date_part('DAY',date) as day, begin, finish from shift " +
+            "where name = '" + userID + "'" +
+            " and date_part('YEAR',date) = " + year +
+            " and date_part('MONTH',date) = " + month + " order by day;"; //SQL
+    String[] column = {"day", "begin", "finish"}; //取得したい列名を配列にする
 
     ArrayList<HashMap<String, String>> resultData = dbAdapter.get(sql, column);
 
@@ -46,42 +49,12 @@
 <div id="container">
     <div id="header">
         <%--body内でのヘッダ部分を記述する--%>
-        ヘッダ領域
+        <h3><%=userID%>でログイン中</h3>
         <hr>
     </div>
     <div id="main">
         <%--メインコンテンツを記述する--%>
         <h1>シフト表１</h1>
-        このページではデータベースにアクセスし、データを取得します。
-
-        <br>
-        <%
-            if (resultData.size() > 0) {
-        %>
-        <table border="1">
-            <tr>
-                <th>date</th>
-                <th>begin</th>
-                <th>finish</th>
-            </tr>
-            <%
-                for (HashMap<String, String> rowData : resultData) {
-            %>
-            <tr>
-                <td><%=rowData.get("date")%>
-                </td>
-                <td><%=rowData.get("begin")%>
-                </td>
-                <td><%=rowData.get("finish")%>
-                </td>
-            </tr>
-            <%}%>
-        </table>
-        <% } //if文の終わり
-        %>
-
-        <br>
-
         <h2><%=year%>年<%=month%>月の予定</h2>
         <form method="post" action="shift1.jsp">
             <input type="hidden" name="year" value="<%=year%>">
@@ -108,6 +81,8 @@
                 <%
                     int[][] calendarMatrix = MonthlyCalendar.getInt(year, month);
 
+                    int resultCnt = 0;
+
                     for (int i = 0; i < calendarMatrix.length; i++) {
                         if (i > 0 && calendarMatrix[i][0] == 0) {
                             break;
@@ -128,7 +103,18 @@
                             <%=String.valueOf(day)%>
                         </a>
                         </div>
-                        <div style="height: 80%"></div>
+                        <div style="height: 80%">
+                            <%
+                                int db_day = resultData.size() > resultCnt ? Integer.valueOf(resultData.get(resultCnt).get("day")) : -1;
+                                if (day == db_day) {
+                            %>
+                            <%=resultData.get(resultCnt).get("begin").replaceAll(":00$", "")%>
+                            〜 <%=resultData.get(resultCnt).get("finish").replaceAll(":00$", "")%>
+                            <%
+                                    resultCnt++;
+                                }
+                            %>
+                        </div>
                     </td>
                     <%
                             }
@@ -144,7 +130,7 @@
     <div id="footer">
         <%--ページのフッタ情報を記述する--%>
         <hr>
-        フッタ領域
+        システム創成プロジェクトI グループ3
     </div>
 </div>
 </body>
