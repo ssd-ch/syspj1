@@ -50,6 +50,7 @@
     <div id="header">
         <%--body内でのヘッダ部分を記述する--%>
         <h3><%=userID%>でログイン中</h3>
+        <a href="useradmin.jsp">ユーザー管理画面へ</a>
         <hr>
     </div>
     <div id="main">

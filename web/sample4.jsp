@@ -1,5 +1,3 @@
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="syspj.JDBCPostgreSQL" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -10,7 +8,7 @@
     JDBCPostgreSQL dbAdapter = new JDBCPostgreSQL();
     dbAdapter.open(); //データベースに接続
 
-    String sql = "insert into pay values ('00001',950);"; //SQL(insert,delete update)
+    String sql = "insert into pay values ('00001',950);"; //SQL(insert,delete,update)
 
     /*
     setというメソッドを使ってsqlを指定する,
