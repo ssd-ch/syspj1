@@ -11,13 +11,20 @@
     JDBCPostgreSQL dbAdapter = new JDBCPostgreSQL();
     dbAdapter.open(); //データベースに接続
 
-    String deleteUserID = request.getParameter("userID");
-    if(deleteUserID!=null){
+    String deleteUserID = request.getParameter("deleteUserID");
+    String adminStutus = request.getParameter("adminStatus");
+
+    if (deleteUserID != null) {
         String deleteSQL = "delete from users where id = '" + deleteUserID + "';";
         dbAdapter.set(deleteSQL);
     }
+    else if (adminStutus!=null){
+        String updateUserID = request.getParameter("updateUserID");
+        String updateSQL = "update users set permission = "+ adminStutus +" where id = '" + updateUserID + "';";
+        dbAdapter.set(updateSQL);
+    }
 
-    String sql = "select * from users "; //SQL
+    String sql = "select * from users order by id"; //SQL
     String[] column = {"id", "name", "permission"}; //取得したい列名を配列にする
 
     ArrayList<HashMap<String, String>> resultData = dbAdapter.get(sql, column);
@@ -50,20 +57,24 @@
                 <tr>
                     <th>ID</th>
                     <th>ユーザー名</th>
-                    <th>管理者権限</th>
+                    <th colspan="2">管理者権限</th>
                     <th>削除</th>
                 </tr>
                 <%
                     for (HashMap<String, String> rowData : resultData) {
+                        int userStatus = Integer.valueOf(rowData.get("permission"));
                 %>
                 <tr style="height: 30px;">
                     <td><%=rowData.get("id")%>
                     </td>
                     <td><%=rowData.get("name")%>
                     </td>
-                    <td><%=Integer.valueOf(rowData.get("permission")) == 1 ? "あり" : "なし"%>
+                    <td><%=userStatus == 1 ? "あり" : "なし"%>
                     </td>
-                    <td><input type="submit" value="削除" onclick="return deleteUser('<%=rowData.get("id")%>')"></td>
+                    <td><input type="submit" value="変更" onclick="return updateAdmin('<%=rowData.get("id")%>',<%= userStatus == 1 ? "false" : "true" %>)">
+                    </td>
+                    <td><input type="submit" value="削除" onclick="return deleteUser('<%=rowData.get("id")%>')">
+                    </td>
                 </tr>
                 <%
                     }
