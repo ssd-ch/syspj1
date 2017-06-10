@@ -89,20 +89,16 @@
                             break;
                         }
                 %>
-                <tr><%
-                    for (int j = 0; j < calendarMatrix[i].length; j++) {
-                        int day = calendarMatrix[i][j];
-                        if (day == 0) {
-                %>
-                    <td></td>
-                    <%
-                    } else {
-                    %>
-                    <td>
-                        <div style="height: 20%; text-align: right"><a
-                                href="javascript:setAndSubmit('<%=String.valueOf(day)%>')">
-                            <%=String.valueOf(day)%>
-                        </a>
+                <tr><%for (int j = 0; j < calendarMatrix[i].length; j++) {%>
+                    <td style="height: 90px;">
+                        <%
+                            int day = calendarMatrix[i][j];
+                            if (day != 0) {
+                        %>
+                        <div style="height: 20%; text-align: right">
+                            <a href="javascript:setAndSubmit('<%=String.valueOf(day)%>')">
+                                <%=String.valueOf(day)%>
+                            </a>
                         </div>
                         <div style="height: 80%">
                             <%
@@ -116,14 +112,11 @@
                                 }
                             %>
                         </div>
+                        <%}%>
                     </td>
-                    <%
-                            }
-                        }
-                    %></tr>
-                <%
-                    }
-                %>
+                    <%}%>
+                </tr>
+                <%}%>
             </table>
         </form>
 

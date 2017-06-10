@@ -1,7 +1,28 @@
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="syspj.JDBCPostgreSQL" %>
+<%@ page import="java.util.Random" %>
+<%@ page import="org.omg.CORBA.Request" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     //POSTで受けっとったデータの文字コード設定
     request.setCharacterEncoding("UTF-8");
+
+    JDBCPostgreSQL dbAdapter = new JDBCPostgreSQL();
+    dbAdapter.open(); //データベースに接続
+
+    String deleteUserID = request.getParameter("userID");
+    if(deleteUserID!=null){
+        String deleteSQL = "delete from users where id = '" + deleteUserID + "';";
+        dbAdapter.set(deleteSQL);
+    }
+
+    String sql = "select * from users "; //SQL
+    String[] column = {"id", "name", "permission"}; //取得したい列名を配列にする
+
+    ArrayList<HashMap<String, String>> resultData = dbAdapter.get(sql, column);
+
+    dbAdapter.close(); //データベースを閉じる
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -21,6 +42,38 @@
         <form method="post" action="user.html">
             <input type="submit" value="ユーザーを追加する">
         </form>
+
+        <br>
+
+        <form name="mainForm" method="post" action="useradmin.jsp">
+            <table class="type11">
+                <tr>
+                    <th>ID</th>
+                    <th>ユーザー名</th>
+                    <th>管理者権限</th>
+                    <th>削除</th>
+                </tr>
+                <%
+                    for (HashMap<String, String> rowData : resultData) {
+                %>
+                <tr style="height: 30px;">
+                    <td><%=rowData.get("id")%>
+                    </td>
+                    <td><%=rowData.get("name")%>
+                    </td>
+                    <td><%=Integer.valueOf(rowData.get("permission")) == 1 ? "あり" : "なし"%>
+                    </td>
+                    <td><input type="submit" value="削除" onclick="return deleteUser('<%=rowData.get("id")%>')"></td>
+                </tr>
+                <%
+                    }
+                %>
+            </table>
+        </form>
+
+        <br>
+
+        <a href="shift1.jsp">戻る</a>
 
     </div>
     <div id="footer">
