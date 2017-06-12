@@ -1,8 +1,6 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="syspj.JDBCPostgreSQL" %>
-<%@ page import="java.util.Random" %>
-<%@ page import="org.omg.CORBA.Request" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     //POSTで受けっとったデータの文字コード設定
@@ -12,20 +10,20 @@
     dbAdapter.open(); //データベースに接続
 
     String deleteUserID = request.getParameter("deleteUserID");
-    String adminStutus = request.getParameter("adminStatus");
+    String adminStatus = request.getParameter("adminStatus");
 
     if (deleteUserID != null) {
         String deleteSQL = "delete from users where id = '" + deleteUserID + "';";
         dbAdapter.set(deleteSQL);
     }
-    else if (adminStutus!=null){
+    else if (adminStatus !=null){
         String updateUserID = request.getParameter("updateUserID");
-        String updateSQL = "update users set permission = "+ adminStutus +" where id = '" + updateUserID + "';";
+        String updateSQL = "update users set permission = "+ adminStatus +" where id = '" + updateUserID + "';";
         dbAdapter.set(updateSQL);
     }
 
-    String sql = "select * from users order by id"; //SQL
-    String[] column = {"id", "name", "permission"}; //取得したい列名を配列にする
+    String sql = "select * from users order by id";
+    String[] column = {"id", "name", "permission"};
 
     ArrayList<HashMap<String, String>> resultData = dbAdapter.get(sql, column);
 

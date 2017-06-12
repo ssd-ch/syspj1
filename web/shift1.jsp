@@ -71,13 +71,13 @@
 
             <table class="type11">
                 <tr>
-                    <th>日</th>
+                    <th style="color: hotpink">日</th>
                     <th>月</th>
                     <th>火</th>
                     <th>水</th>
                     <th>木</th>
                     <th>金</th>
-                    <th>土</th>
+                    <th style="color: deepskyblue">土</th>
                 </tr>
                 <%
                     int[][] calendarMatrix = MonthlyCalendar.getInt(year, month);
@@ -85,7 +85,7 @@
                     int resultCnt = 0;
 
                     for (int i = 0; i < calendarMatrix.length; i++) {
-                        if (i > 0 && calendarMatrix[i][0] == 0) {
+                        if (calendarMatrix[i][0] == 0) {
                             break;
                         }
                 %>
@@ -93,12 +93,15 @@
                     <td style="height: 90px;">
                         <%
                             int day = calendarMatrix[i][j];
-                            if (day != 0) {
                         %>
                         <div style="height: 20%; text-align: right">
-                            <a href="javascript:setAndSubmit('<%=String.valueOf(day)%>')">
-                                <%=String.valueOf(day)%>
+                            <% if ((i == 0 && day >= 23) || (i >= 4 && day <= 6)) {
+                            %>
+                            <%=String.valueOf(day)%>
+                            <%} else {%>
+                            <a href="javascript:setAndSubmit('<%=String.valueOf(day)%>')"><%=String.valueOf(day)%>
                             </a>
+                            <%}%>
                         </div>
                         <div style="height: 80%">
                             <%
@@ -112,7 +115,6 @@
                                 }
                             %>
                         </div>
-                        <%}%>
                     </td>
                     <%}%>
                 </tr>
