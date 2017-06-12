@@ -27,7 +27,8 @@
         month = month >= 12 ? 1 : month + 1;
     }
 
-    String userID = "S001";
+    // セッション変数の取得
+    String userID = (String) session.getAttribute("userID");
 
     JDBCPostgreSQL dbAdapter = new JDBCPostgreSQL();
     dbAdapter.open(); //データベースに接続
@@ -51,6 +52,7 @@
         <%--body内でのヘッダ部分を記述する--%>
         <h3><%=userID%>でログイン中</h3>
         <a href="useradmin.jsp">ユーザー管理画面へ</a>
+        <a href="logout.jsp">ログアウト</a>
         <hr>
     </div>
     <div id="main">
