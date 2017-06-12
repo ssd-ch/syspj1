@@ -3,6 +3,7 @@
 <%@ page import="syspj.*" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="auth.jsp" %><%--ユーザー認証--%>
 <%
     //POSTで受けっとったデータの文字コード設定
     request.setCharacterEncoding("UTF-8");
@@ -53,6 +54,7 @@
         <h3><%=userID%>でログイン中</h3>
         <a href="useradmin.jsp">ユーザー管理画面へ</a>
         <a href="logout.jsp">ログアウト</a>
+            <right><a href="userconfig1.jsp">個人設定</a></right>
         <hr>
     </div>
     <div id="main">

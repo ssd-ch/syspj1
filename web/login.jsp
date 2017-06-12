@@ -20,7 +20,6 @@
         dbAdapter.open(); //データベースに接続
 
         String sql = "select * from users where id = '" + requestUserID + "' and pass = '" + requestPassword + "';"; //SQL
-        System.out.println(sql);
         String[] column = {"id","name"}; //取得したい列名を配列にする
 
         ArrayList<HashMap<String, String>> resultData = dbAdapter.get(sql, column);

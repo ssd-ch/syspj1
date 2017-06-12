@@ -2,6 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="syspj.JDBCPostgreSQL" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="auth.jsp" %><%--ユーザー認証--%>
 <%
     //POSTで受けっとったデータの文字コード設定
     request.setCharacterEncoding("UTF-8");

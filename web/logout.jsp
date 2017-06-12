@@ -1,12 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    //セッション終了
-    session.invalidate();
-%>
+<%@ include file="auth.jsp" %><%--ユーザー認証--%>
 <!DOCTYPE html>
 <html>
 <%--文字コードやcss,jsの設定を記述する、今回はhead_meta.htmlに記述するのでインクルードを行う--%>
 <jsp:include page="head_meta.html"/>
+<%
+    //セッション終了
+    session.invalidate();
+%>
 <body>
 <div id="container">
     <div id="header">
