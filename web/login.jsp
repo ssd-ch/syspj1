@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     // セッション変数がセットされている場合はリダイレクト
-    if(session.getAttribute("userID")!=null){
+    if (session.getAttribute("userID") != null) {
         response.sendRedirect("shift1.jsp");
     }
 
@@ -13,27 +13,27 @@
     String requestUserID = request.getParameter("userID");
     String requestPassword = request.getParameter("password");
 
-    String message="";
+    String message = "";
 
     if (requestUserID != null) {
         JDBCPostgreSQL dbAdapter = new JDBCPostgreSQL();
         dbAdapter.open(); //データベースに接続
 
         String sql = "select * from users where id = '" + requestUserID + "' and pass = '" + requestPassword + "';"; //SQL
-        String[] column = {"id","name"}; //取得したい列名を配列にする
+        String[] column = {"id", "name"}; //取得したい列名を配列にする
 
         ArrayList<HashMap<String, String>> resultData = dbAdapter.get(sql, column);
 
-        if(resultData.size()==1){
+        if (resultData.size() == 1) {
             session.setAttribute("userID", resultData.get(0).get("id"));
             session.setAttribute("userName", resultData.get(0).get("name"));
             response.sendRedirect("shift1.jsp");
-        }else{
+        } else {
             message = "IDまたはパスワードが違います。";
         }
 
         dbAdapter.close(); //データベースを閉じる
-    }else{
+    } else {
         requestUserID = "";
     }
 %>
@@ -49,7 +49,8 @@
     <div id="main">
         <h1>ログインページ</h1>
 
-        <p style="color: red"><%=message%></p>
+        <p style="color: red"><%=message%>
+        </p>
 
         <form method="post" action="login.jsp">
 

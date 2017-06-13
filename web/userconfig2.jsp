@@ -12,10 +12,10 @@
     String PassWord1 = request.getParameter("password2");
     String PassWord2 = request.getParameter("password3");
 
-    String message = "";
+    String message;
 
     //再入力用のボタン表示フラグ
-    Boolean button = true;
+    Boolean button = false;
 
     //セッション変数
     String userID = (String) session.getAttribute("userID");
@@ -28,12 +28,13 @@
 
     ArrayList<HashMap<String, String>> resultData = dbAdapter.get(sql, column);
 
-    if (resultData.size() == 1 && PassWord1.equals(PassWord2)) {
+    if (userName.equals("") || PassWord1.equals("")) {
+        message = "ユーザー名またはパスワードが指定されていません。";
+    } else if (resultData.size() == 1 && PassWord1.equals(PassWord2)) {
         String updateSQL = "update users set name = '" + userName + "', pass = '" + PassWord1 + "' where id = '" + userID + "';";
-        System.out.println(updateSQL);
         if (dbAdapter.set(updateSQL) == 1) {
             message = "ユーザー情報を変更しました。";
-            button = false;
+            button = true;
         } else {
             message = "ユーザー情報の変更に失敗しました。";
         }
@@ -62,6 +63,7 @@
 
 
         <form name="mainForm" method="post" action="userconfig1.jsp">
+            <% if (button) {%>
             <table>
                 <tr>
                     <td>ユーザー名</td>
@@ -73,9 +75,9 @@
                     <td>**************</td>
                 </tr>
             </table>
-            <% if(button){%>
+            <% } else { %>
             <input type="submit" value="再入力">
-            <% } %>
+            <%}%>
         </form>
 
         <br>
