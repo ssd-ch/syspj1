@@ -20,13 +20,15 @@
         dbAdapter.open(); //データベースに接続
 
         String sql = "select * from users where id = '" + requestUserID + "' and pass = '" + requestPassword + "';"; //SQL
-        String[] column = {"id", "name"}; //取得したい列名を配列にする
+        String[] column = {"id", "name", "permission"}; //取得したい列名を配列にする
 
         ArrayList<HashMap<String, String>> resultData = dbAdapter.get(sql, column);
 
         if (resultData.size() == 1) {
             session.setAttribute("userID", resultData.get(0).get("id"));
             session.setAttribute("userName", resultData.get(0).get("name"));
+            System.out.println(resultData.get(0).get("permission"));
+            session.setAttribute("permission", Integer.valueOf(resultData.get(0).get("permission")));
             response.sendRedirect("shift1.jsp");
         } else {
             message = "IDまたはパスワードが違います。";
