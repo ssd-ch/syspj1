@@ -45,7 +45,7 @@
         <h1>ユーザー管理</h1>
 
         <br>
-        <form method="post" action="user.html">
+        <form method="post" action="user.jsp">
             <input type="submit" value="ユーザーを追加する">
         </form>
 

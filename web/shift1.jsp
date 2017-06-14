@@ -52,9 +52,11 @@
     <div id="header">
         <%--body内でのヘッダ部分を記述する--%>
         <h3><%=userID%>でログイン中</h3>
-        <a href="useradmin.jsp">ユーザー管理画面へ</a>
+        <a href="useradmin.jsp">ユーザー管理</a>
+        <a href="paychange.jsp">時給変更</a>
+        <a href="pay.jsp">時給確認</a>
+        <a href="userconfig1.jsp">個人設定</a>
         <a href="logout.jsp">ログアウト</a>
-            <right><a href="userconfig1.jsp">個人設定</a></right>
         <hr>
     </div>
     <div id="main">
