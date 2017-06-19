@@ -1,7 +1,9 @@
 <%
     // セッション変数がセットされていない場合はリダイレクト
-    int authenticationAdmin = (int) session.getAttribute("permission");
-    if (authenticationAdmin == 0) {
-        response.sendRedirect("shift1.jsp");
+    String authenticationAdmin = (String) session.getAttribute("permission");
+    if (authenticationAdmin != null) {
+        if (Integer.valueOf(authenticationAdmin) == 0) {
+            response.sendRedirect("shift1.jsp");
+        }
     }
 %>

@@ -27,8 +27,7 @@
         if (resultData.size() == 1) {
             session.setAttribute("userID", resultData.get(0).get("id"));
             session.setAttribute("userName", resultData.get(0).get("name"));
-            System.out.println(resultData.get(0).get("permission"));
-            session.setAttribute("permission", Integer.valueOf(resultData.get(0).get("permission")));
+            session.setAttribute("permission", resultData.get(0).get("permission"));
             response.sendRedirect("shift1.jsp");
         } else {
             message = "IDまたはパスワードが違います。";

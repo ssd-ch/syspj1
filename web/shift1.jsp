@@ -53,12 +53,16 @@
         <%--body内でのヘッダ部分を記述する--%>
         <h3><%=userID%>でログイン中</h3>
         <%
-            int authenticationAdmin = (int) session.getAttribute("permission");
-            if (authenticationAdmin == 1) {
+            String authenticationAdmin = (String) session.getAttribute("permission");
+            if (authenticationAdmin != null) {
+                if (Integer.valueOf(authenticationAdmin) == 1) {
         %>
         <a href="useradmin.jsp">ユーザー管理</a>
         <a href="paychange.jsp">時給変更</a>
-        <%}%>
+        <%
+                }
+            }
+        %>
         <a href="pay.jsp">時給確認</a>
         <a href="userconfig1.jsp">個人設定</a>
         <a href="logout.jsp">ログアウト</a>
