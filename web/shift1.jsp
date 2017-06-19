@@ -35,7 +35,7 @@
     dbAdapter.open(); //データベースに接続
 
     String sql = "select date_part('DAY',date) as day, begin, finish from shift " +
-            "where name = '" + userID + "'" +
+            "where id = '" + userID + "'" +
             " and date_part('YEAR',date) = " + year +
             " and date_part('MONTH',date) = " + month + " order by day;"; //SQL
     String[] column = {"day", "begin", "finish"}; //取得したい列名を配列にする
