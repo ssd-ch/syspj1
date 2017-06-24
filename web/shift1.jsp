@@ -57,8 +57,10 @@
             if (authenticationAdmin != null) {
                 if (Integer.valueOf(authenticationAdmin) == 1) {
         %>
-        <a href="useradmin.jsp">ユーザー管理</a>
-        <a href="paychange.jsp">時給変更</a>
+        <a href="javascript">ユーザー管理</a>
+        <form name="payForm" method="post" action="paychange.jsp" style="display: inline">
+            <a href="javascript:submitDate('<%=year%>','<%=month%>')">時給変更</a>
+        </form>
         <%
                 }
             }

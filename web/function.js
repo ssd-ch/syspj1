@@ -57,3 +57,24 @@ function updateAdmin(id, a) {
         }
     }
 }
+
+function submitDate(year, month) {
+
+    // エレメントを作成
+    var ele = document.createElement('input');
+    // データを設定
+    ele.setAttribute('type', 'hidden');
+    ele.setAttribute('name', 'year');
+    ele.setAttribute('value', year);
+    // 要素を追加
+    document.mainForm.appendChild(ele);
+
+    // エレメントを作成
+    var ele = document.createElement('input');
+    // データを設定
+    ele.setAttribute('type', 'hidden');
+    ele.setAttribute('name', 'month');
+    ele.setAttribute('value', month);
+    // 要素を追加
+    document.mainForm.appendChild(ele);
+}
