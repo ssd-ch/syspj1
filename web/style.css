@@ -2,6 +2,22 @@ h1 {
     color: #003366;
 }
 
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: blue;
+}
+
+a:hover {
+    color: deepskyblue;
+}
+
+a:active {
+    color: deepskyblue;
+}
+
 table.type11 {
     border-collapse: separate;
     border-spacing: 1px;
