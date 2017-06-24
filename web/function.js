@@ -67,7 +67,7 @@ function submitDate(year, month) {
     ele.setAttribute('name', 'year');
     ele.setAttribute('value', year);
     // 要素を追加
-    document.mainForm.appendChild(ele);
+    document.payForm.appendChild(ele);
 
     // エレメントを作成
     var ele = document.createElement('input');
@@ -76,5 +76,7 @@ function submitDate(year, month) {
     ele.setAttribute('name', 'month');
     ele.setAttribute('value', month);
     // 要素を追加
-    document.mainForm.appendChild(ele);
+    document.payForm.appendChild(ele);
+
+    document.payForm.submit();
 }
