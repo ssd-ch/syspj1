@@ -63,7 +63,7 @@
                 }
             }
         %>
-        <form name="payForm" method="post" action="paychange.jsp" style="display: inline">
+        <form name="payForm" method="post" action="pay.jsp" style="display: inline">
         <a href="javascript:submitDate('<%=year%>','<%=month%>')">時給確認</a>
         </form>
         <a href="userconfig1.jsp">個人設定</a>
