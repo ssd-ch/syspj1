@@ -51,6 +51,7 @@
 <div id="container">
     <div id="header">
         <%--body内でのヘッダ部分を記述する--%>
+        <h4>勤怠管理システム</h4>
         <h3><%=userID%>でログイン中</h3>
         <%
             String authenticationAdmin = (String) session.getAttribute("permission");
@@ -64,7 +65,7 @@
             }
         %>
         <form name="payForm" method="post" action="pay.jsp" style="display: inline">
-        <a href="javascript:submitDate('<%=year%>','<%=month%>')">時給確認</a>
+            <a href="javascript:submitDate('<%=year%>','<%=month%>')">時給確認</a>
         </form>
         <a href="userconfig1.jsp">個人設定</a>
         <a href="logout.jsp">ログアウト</a>
@@ -142,8 +143,7 @@
     </div>
     <div id="footer">
         <%--ページのフッタ情報を記述する--%>
-        <hr>
-        システム創成プロジェクトI グループ3
+        <jsp:include page="footer_div.jsp"/>
     </div>
 </div>
 </body>

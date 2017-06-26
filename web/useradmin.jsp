@@ -17,10 +17,9 @@
     if (deleteUserID != null) {
         String deleteSQL = "delete from users where id = '" + deleteUserID + "';";
         dbAdapter.set(deleteSQL);
-    }
-    else if (adminStatus !=null){
+    } else if (adminStatus != null) {
         String updateUserID = request.getParameter("updateUserID");
-        String updateSQL = "update users set permission = "+ adminStatus +" where id = '" + updateUserID + "';";
+        String updateSQL = "update users set permission = " + adminStatus + " where id = '" + updateUserID + "';";
         dbAdapter.set(updateSQL);
     }
 
@@ -38,8 +37,7 @@
 <div id="container">
     <div id="header">
         <%--body内でのヘッダ部分を記述する--%>
-        ヘッダ領域
-        <hr>
+        <jsp:include page="header_div.jsp"/>
     </div>
     <div id="main">
         <%--メインコンテンツを記述する--%>
@@ -71,7 +69,8 @@
                     </td>
                     <td><%=userStatus == 1 ? "あり" : "なし"%>
                     </td>
-                    <td><input type="submit" value="変更" onclick="return updateAdmin('<%=rowData.get("id")%>',<%= userStatus == 1 ? "false" : "true" %>)">
+                    <td><input type="submit" value="変更"
+                               onclick="return updateAdmin('<%=rowData.get("id")%>',<%= userStatus == 1 ? "false" : "true" %>)">
                     </td>
                     <td><input type="submit" value="削除" onclick="return deleteUser('<%=rowData.get("id")%>')">
                     </td>
@@ -89,8 +88,7 @@
     </div>
     <div id="footer">
         <%--ページのフッタ情報を記述する--%>
-        <hr>
-        フッタ領域
+        <jsp:include page="footer_div.jsp"/>
     </div>
 </div>
 </body>

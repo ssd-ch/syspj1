@@ -51,8 +51,7 @@
 <div id="container">
     <div id="header">
         <%--body内でのヘッダ部分を記述する--%>
-        ヘッダ領域
-        <hr>
+        <jsp:include page="header_div.jsp"/>
     </div>
     <div id="main">
         <%--メインコンテンツを記述する--%>
@@ -87,8 +86,7 @@
     </div>
     <div id="footer">
         <%--ページのフッタ情報を記述する--%>
-        <hr>
-        フッタ領域
+        <jsp:include page="footer_div.jsp"/>
     </div>
 </div>
 </body>

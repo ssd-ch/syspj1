@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="auth.jsp" %><%--ユーザー認証--%>
 <%
     //POSTで受けっとったデータの文字コード設定
     request.setCharacterEncoding("UTF-8");
@@ -10,8 +11,7 @@
 <div id="container">
     <div id="header">
         <%--body内でのヘッダ部分を記述する--%>
-        ヘッダ領域
-        <hr>
+        <jsp:include page="header_div.jsp"/>
     </div>
     <div id="main">
         <%--メインコンテンツを記述する--%>
@@ -24,10 +24,15 @@
     </div>
     <div id="footer">
         <%--ページのフッタ情報を記述する--%>
-        <hr>
-        フッタ領域
+        <jsp:include page="footer_div.jsp"/>
     </div>
 </div>
 </body>
 </html>
 
+<%--
+    共通で行って欲しいところ
+    2 , 14 , 27 行目のインクルード
+    divの領域わけ( header , main , footer)
+    それぞれのページ名（シフト１やユーザー管理など）はmainの中で一番上にh1タグで記述
+--%>

@@ -11,6 +11,7 @@
 <body>
 <div id="container">
     <div id="header">
+        <h1>勤怠管理システム</h1>
         <hr>
     </div>
     <div id="main">
@@ -20,7 +21,7 @@
         <a href="login.jsp">ログインへ</a>
     </div>
     <div id="footer">
-        <hr>
+        <jsp:include page="footer_div.jsp"/>
     </div>
 </div>
 </body>

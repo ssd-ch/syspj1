@@ -45,6 +45,7 @@
 <body>
 <div id="container">
     <div id="header">
+        <h4>勤怠管理システム</h4>
         <hr>
     </div>
     <div id="main">
@@ -71,7 +72,7 @@
         </form>
     </div>
     <div id="footer">
-        <hr>
+        <jsp:include page="footer_div.jsp"/>
     </div>
 </div>
 </body>
