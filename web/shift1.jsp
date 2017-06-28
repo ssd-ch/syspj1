@@ -124,7 +124,7 @@
                         <div style="height: 80%">
                             <%
                                 int db_day = resultData.size() > resultCnt ? Integer.valueOf(resultData.get(resultCnt).get("day")) : -1;
-                                if (day == db_day) {
+                                if (day == db_day && !(i==0 && day >= 23)) {
                             %>
                             <%=resultData.get(resultCnt).get("begin").replaceAll(":00$", "")%>
                             〜 <%=resultData.get(resultCnt).get("finish").replaceAll(":00$", "")%>
