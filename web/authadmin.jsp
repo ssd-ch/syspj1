@@ -3,7 +3,7 @@
     String authenticationAdmin = (String) session.getAttribute("permission");
     if (authenticationAdmin != null) {
         if (Integer.valueOf(authenticationAdmin) == 0) {
-            response.sendRedirect("shift1.jsp");
+            application.getRequestDispatcher("/shift1.jsp").forward(request, response);
         }
     }
 %>

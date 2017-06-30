@@ -3,9 +3,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    // セッション変数がセットされている場合はリダイレクト
+    // セッション変数がセットされている場合はフォワード
     if (session.getAttribute("userID") != null) {
-        response.sendRedirect("shift1.jsp");
+        application.getRequestDispatcher("/shift1.jsp").forward(request, response);
     }
 
     //フォームに入力されたIDを取得
@@ -28,7 +28,7 @@
             session.setAttribute("userID", resultData.get(0).get("id"));
             session.setAttribute("userName", resultData.get(0).get("name"));
             session.setAttribute("permission", resultData.get(0).get("permission"));
-            response.sendRedirect("shift1.jsp");
+            application.getRequestDispatcher("/shift1.jsp").forward(request, response);
         } else {
             message = "IDまたはパスワードが違います。";
         }
